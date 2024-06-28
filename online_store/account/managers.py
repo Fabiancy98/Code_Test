@@ -13,7 +13,6 @@ class UserManager(BaseUserManager):
             raise ValueError(_("please enter a valid email address"))
         
     def create_user(self, email, password, **extra_fields):
-        # extra_fields.setdefault("is_staff", True)
         if email:
             email = self.normalize_email(email)
             self.email_validator(email)

@@ -1,6 +1,5 @@
 from rest_framework.generics import GenericAPIView,RetrieveUpdateAPIView
 
-from account.permissions import IsEmployee
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
@@ -49,7 +48,7 @@ class LogoutUserview(GenericAPIView):
 
 class EditEmployeeProfileView(RetrieveUpdateAPIView):
     serializer_class = GetUserSerializer
-    permission_classes = [IsAuthenticated, IsEmployee]
+    permission_classes = [IsAuthenticated]
     lookup_field = 'id'
       
 

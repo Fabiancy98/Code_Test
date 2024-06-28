@@ -1,6 +1,5 @@
 from rest_framework.generics import GenericAPIView,RetrieveUpdateDestroyAPIView, ListAPIView
 
-from account.permissions import IsEmployee
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,7 +12,7 @@ from django.shortcuts import get_object_or_404
 
 class CreateItemsView(GenericAPIView):
     serializer_class = CreateItemSerializer
-    permission_classes = [IsAuthenticated, IsEmployee]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         user = self.request.user
@@ -31,7 +30,7 @@ class CreateItemsView(GenericAPIView):
     
 
 class ItemsView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated, IsEmployee]
+    permission_classes = [IsAuthenticated]
     serializer_class = ItemSerializer
     lookup_field='id'
 
@@ -63,6 +62,6 @@ class ItemsView(RetrieveUpdateDestroyAPIView):
 
 
 class ListItemsView(ListAPIView):
-    permission_classes = [IsAuthenticated, IsEmployee]
+    permission_classes = [IsAuthenticated]
     serializer_class = ListItemSerializer
     queryset = Item.objects.all()
