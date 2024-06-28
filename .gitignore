@@ -1,0 +1,24 @@
+# Ignore virtual environment
+venv/
+
+# Ignore Django migration files
+**/migrations/
+
+# Ignore local settings
+**/local_settings.py
+
+# Ignore database file (if using SQLite)
+*.sqlite3
+
+# Ignore logs and temporary files
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
