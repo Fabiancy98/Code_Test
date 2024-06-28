@@ -1,0 +1,738 @@
+openapi: 3.0.3
+info:
+  title: ONLINE STORE MANAGEMENT
+  version: 1.0.0
+  description: Api for online store management
+paths:
+  /api/v1/auth/login/:
+    post:
+      operationId: v1_auth_login_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Login"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Login"
+        required: true
+      security:
+        - jwtAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+          description: ""
+  /api/v1/auth/logout/:
+    post:
+      operationId: v1_auth_logout_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogoutUser"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/LogoutUser"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/LogoutUser"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutUser"
+          description: ""
+  /api/v1/auth/profile/employee/{id}:
+    get:
+      operationId: v1_auth_profile_employee_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUser"
+          description: ""
+    put:
+      operationId: v1_auth_profile_employee_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetUser"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/GetUser"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/GetUser"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUser"
+          description: ""
+  /api/v1/auth/register/:
+    post:
+      operationId: v1_auth_register_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRegister"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/UserRegister"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UserRegister"
+        required: true
+      security:
+        - jwtAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserRegister"
+          description: ""
+  /api/v1/inventory/item/{id}/:
+    get:
+      operationId: v1_inventory_item_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateItem"
+          description: ""
+    put:
+      operationId: v1_inventory_item_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateItem"
+          description: ""
+    delete:
+      operationId: v1_inventory_item_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "204":
+          description: No response body
+  /api/v1/inventory/item/create/:
+    post:
+      operationId: v1_inventory_item_create_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateItem"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateItem"
+          description: ""
+  /api/v1/inventory/item/list/:
+    get:
+      operationId: v1_inventory_item_list_list
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+          description: ""
+  /api/v1/supplier/{id}/:
+    get:
+      operationId: v1_supplier_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SupplierDetails"
+          description: ""
+    put:
+      operationId: v1_supplier_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SupplierDetails"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/SupplierDetails"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/SupplierDetails"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SupplierDetails"
+          description: ""
+    delete:
+      operationId: v1_supplier_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "204":
+          description: No response body
+  /api/v1/supplier/create/:
+    post:
+      operationId: v1_supplier_create_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSupplier"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateSupplier"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateSupplier"
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateSupplier"
+          description: ""
+  /api/v1/supplier/list/:
+    get:
+      operationId: v1_supplier_list_list
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SupplierList"
+          description: ""
+components:
+  schemas:
+    CreateItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        suppliers:
+          type: array
+          items:
+            type: integer
+      required:
+        - description
+        - id
+        - name
+        - price
+        - suppliers
+    CreateSupplier:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          maxLength: 10
+        address:
+          type: string
+      required:
+        - address
+        - email
+        - name
+        - phone_number
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 255
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        branch:
+          type: string
+          maxLength: 50
+        country:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 50
+      required:
+        - branch
+        - country
+        - email
+        - first_name
+        - id
+        - last_name
+        - phone_number
+        - state
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date
+          readOnly: true
+        updated_at:
+          type: string
+          format: date
+          readOnly: true
+        suppliers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Supplier"
+          readOnly: true
+      required:
+        - created_at
+        - description
+        - id
+        - name
+        - price
+        - suppliers
+        - updated_at
+    ItemDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date
+          readOnly: true
+        updated_at:
+          type: string
+          format: date
+          readOnly: true
+      required:
+        - created_at
+        - description
+        - id
+        - name
+        - price
+        - updated_at
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          minLength: 6
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 68
+        access_token:
+          type: string
+          readOnly: true
+          maxLength: 255
+        refresh_token:
+          type: string
+          readOnly: true
+          maxLength: 255
+        id:
+          type: string
+          readOnly: true
+          maxLength: 15
+      required:
+        - access_token
+        - email
+        - id
+        - password
+        - refresh_token
+    LogoutUser:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+        - refresh_token
+    PatchedCreateItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        suppliers:
+          type: array
+          items:
+            type: integer
+    PatchedGetUser:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 255
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        branch:
+          type: string
+          maxLength: 50
+        country:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 50
+    PatchedSupplierDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          maxLength: 10
+        address:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ItemDetail"
+          readOnly: true
+    Supplier:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          maxLength: 10
+        address:
+          type: string
+      required:
+        - address
+        - email
+        - id
+        - name
+        - phone_number
+    SupplierDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          maxLength: 10
+        address:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ItemDetail"
+          readOnly: true
+      required:
+        - address
+        - email
+        - id
+        - items
+        - name
+        - phone_number
+    SupplierList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+      required:
+        - email
+        - id
+        - name
+    UserRegister:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 255
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 68
+          minLength: 6
+        password2:
+          type: string
+          writeOnly: true
+          maxLength: 68
+          minLength: 6
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        branch:
+          type: string
+          maxLength: 50
+        country:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 50
+      required:
+        - branch
+        - country
+        - email
+        - first_name
+        - id
+        - last_name
+        - password
+        - password2
+        - phone_number
+        - state
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
