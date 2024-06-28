@@ -156,7 +156,7 @@ Response:
 
 ##### GET /api/v1/inventory/item/list/:
 
-Description: Retrieve list of all items along with all the suppliers that supply the item
+Description: Retrieve list of all items
 Response:
 
 ```bash
@@ -238,28 +238,44 @@ Request Body: JSON, x-www-form-urlencoded, multipart/form-data
 Response:
 
 ```bash
-{
-"msg": "Item <item_name> successfully updated"
-}
+   {
+   "msg": "Item <item_name> successfully updated"
+   }
 ```
 
 ##### DELETE /api/v1/inventory/item/{id}/:
 
-    Description: Delete item by ID.
-    Path Parameters:
-        id (integer): Item ID
+Description: Delete item by ID.
+Path Parameters:
+id (integer): Item ID
 
-    Response:
-    ```bash
-      {
-         "msg": "Item <item_name> successfully deleted"
-      }```
+Response:
+
+```bash
+   {
+      "msg": "Item <item_name> successfully deleted"
+   }
+```
 
 ### Suppliers
 
 ##### GET /api/v1/supplier/list/:
 
-#### POST /api/v1/supplier/create/\*\*: Create a new supplier.
+Description: Retrieve list of all suppliers
+Response:
+
+```bash
+   [
+      {
+      "id": "integer",
+      "name": "string",
+      "description": "string",
+      "price": "string"
+      }
+   ]
+```
+
+#### POST /api/v1/supplier/create/: Create a new supplier.
 
 Description: Update supplier details by ID.
 
@@ -275,9 +291,15 @@ Request Body: JSON, x-www-form-urlencoded, multipart/form-data
 
 Response:
 
-#### GET /api/v1/supplier/{id}/\*\*: Retrieve a specific supplier.
+```bash
+{
+  "message": "Supplier <name> created successfully"
+}
+```
 
-Description: Retrieve supplier details by ID.
+##### GET /api/v1/supplier/{id}/:
+
+Description: Retrieve supplier details by ID along with all the items associated with it.
 Path Parameters:
 
       id (integer): Supplier ID
@@ -305,30 +327,32 @@ Response:
       Request Body: JSON, x-www-form-urlencoded, multipart/form-data
 
       ```bash
-      {
-         "name": "string",
-         "email": "string",
-         "phone_number": "string",
-         "address": "string"
-      }
-
-````
+         {
+            "name": "string",
+            "email": "string",
+            "phone_number": "string",
+            "address": "string"
+         }
+      ```
 
 Response:
 
-```bash{
-   "message": Supplier {instance.n sucessfully updated
+```bash
+   {
+      "message": Supplier {instance.n sucessfully updated
    }
-````
+```
 
-- **DELETE /api/v1/supplier/{id}/**: Delete a specific supplier.
-  Description: Delete item by ID.
-  Path Parameters:
-  id (integer): Item ID
-  Response:
+##### DELETE /api/v1/supplier/{id}/: Delete a specific supplier.
 
-```bash{
-   "message": Supplier {instance.name} sucessfully deleted
+Description: Delete item by ID.
+Path Parameters:
+id (integer): Item ID
+
+Response:
+
+```bash
+   {
+      "message": Supplier {instance.name} sucessfully deleted
    }
-
 ```
